@@ -18,7 +18,7 @@ export default {
                 'is-active': this.active,
             }
         }
-    }
+    },
 };
 </script>
 
@@ -55,7 +55,7 @@ export default {
 
 .modal-midden {
     max-height: 95%;
-    color: #000;    
+    color: #000;
 }
 
 button {

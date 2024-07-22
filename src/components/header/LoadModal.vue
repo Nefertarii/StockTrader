@@ -16,11 +16,13 @@
                             <div class="data-title-date">Date </div>
                             <div class="data-title-name">Name </div>
                         </div>
-                        <div v-for="(data, index) in save_array" :key="data.save_date">
+                        <div class="data-list" v-for="(data, index) in save_array" >
                             <div :class="['data-show', 'array-data-list' + index % 2]" @click="loadData(data)">
                                 <div class="data-date"> {{ data.save_date }} </div>
                                 <div class="data-name"> {{ data.save_name }} </div>
                             </div>
+                            <a-button :class="['data-del', 'array-data-list' + index % 2]" @click="deleteData(data)"> X
+                            </a-button>
                         </div>
                     </div>
                 </div>
@@ -58,6 +60,7 @@ export default {
                     //console.log(JSON.parse(localStorage.getItem(tmp_key)));
                 }
             }
+            this.save_array.sort();
             //console.log(this.save_array);
             this.number = this.save_array.length;
         },
@@ -79,6 +82,10 @@ export default {
             setTimeout(() => {
                 this.openModal();
             }, 1200);
+        },
+        deleteData(data_key) {
+            localStorage.removeItem('|' + data_key.save_name);
+            this.save_array = this.save_array.filter(item => item.save_name !== data_key.save_name);
         }
     }
 };
@@ -110,6 +117,10 @@ export default {
     font-weight: 600;
 }
 
+.data-list {
+    display: flex;
+}
+
 .data-title-show,
 .data-show {
     display: flex;
@@ -119,22 +130,22 @@ export default {
     align-items: center;
     /* 将项目垂直居中 */
     border-bottom: 1px solid $border_color_gray;
-
-    &.array-data-list0 {
-        background-color: $bg_color_gray;
-    }
-
-    &.array-data-list1 {
-        background-color: $bg_color_gray2;
-    }
 }
 
 .data-show {
-    overflow: hidden;
+    cursor: pointer;
 
     &:hover {
         background-color: $bg_color_gray3;
     }
+}
+
+.array-data-list0 {
+    background-color: $bg_color_gray;
+}
+
+.array-data-list1 {
+    background-color: $bg_color_gray2;
 }
 
 .data-title-name,
@@ -153,15 +164,18 @@ export default {
 }
 
 .data-name {
-    width: $modal_width_size - 200;
+    width: 200px;
     text-align: left;
-    padding-left: 15px;
 
-    white-space:nowrap;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.data-del {
+    border: 1px solid;
+    height: 40px;
+}
 
 .modal-enter-active,
 .modal-leave-active {

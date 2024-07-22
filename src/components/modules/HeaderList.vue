@@ -67,12 +67,15 @@ export default {
 <style lang="scss" scoped>
 @import "../css/variable.scss";
 
+
+
 .header-list {
     background-color: $bg_color_dark;
     min-width: $page_window_min_size;
     height: $header_height_size;
     color: #FFFFFF;
     //position: fixed;
+    top: 0;
     position: sticky;
 }
 
