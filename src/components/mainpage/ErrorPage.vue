@@ -1,7 +1,7 @@
 <template>
     <div id="section">
         <div id="container">
-            page noexist.
+            page not exist.
         </div>
     </div>
 </template>

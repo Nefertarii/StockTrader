@@ -13,48 +13,64 @@ const store = new Vuex.Store({
         stocks: [
             {
                 code: 10001,
-                name: "stock1",
-                price: 15,
+                name: "Stock Tycoon",
+                price: 20,
                 is_sell: false,
                 quantity: 0,
                 buy_avg: 0,
             },
             {
                 code: 10002,
-                name: "stock2",
-                price: 15,
+                name: "Wealth Storm",
+                price: 20,
                 is_sell: false,
                 quantity: 0,
                 buy_avg: 0,
             },
             {
                 code: 10003,
-                name: "stock3",
-                price: 15,
+                name: "Financial Empireney",
+                price: 20,
                 is_sell: false,
                 quantity: 0,
                 buy_avg: 0,
             },
             {
                 code: 10004,
-                name: "stock4",
-                price: 15,
+                name: "Wall Street King",
+                price: 20,
                 is_sell: false,
                 quantity: 0,
                 buy_avg: 0,
             },
             {
                 code: 10005,
-                name: "stock5",
-                price: 15,
+                name: "Trading Frenzy",
+                price: 20,
                 is_sell: false,
                 quantity: 0,
                 buy_avg: 0,
             },
             {
                 code: 10006,
-                name: "stock6",
-                price: 15,
+                name: "Market Elite",
+                price: 20,
+                is_sell: false,
+                quantity: 0,
+                buy_avg: 0,
+            },
+            {
+                code: 10007,
+                name: "Pinnacle of Wealth",
+                price: 20,
+                is_sell: false,
+                quantity: 0,
+                buy_avg: 0,
+            },
+            {
+                code: 10008,
+                name: "Market Mysteries",
+                price: 20,
                 is_sell: false,
                 quantity: 0,
                 buy_avg: 0,
@@ -66,8 +82,7 @@ const store = new Vuex.Store({
     mutations: {
         fundsAdd(state, val) {
             state.funds += val;
-
-            state.refresh_key += 1;
+            //state.refresh_key += 1;
         },
         quantityAdd(state, payload) {
             const stock = state.stocks.find(stock => stock.code === payload.code);
@@ -92,19 +107,20 @@ const store = new Vuex.Store({
             state.holding_stocks = state.holding_stocks.filter(function (holding) {
                 return holding !== code
             });
+            state.refresh_key += 1;
         },
         stockNextDay(state) {
             for (const stock of state.stocks) {
-                var random_num = Math.floor(Math.random() * 10);
+                var random_num = Math.floor(Math.random() * 5);
                 if (Math.floor(Math.random() * 2) === 0) {
                     stock.price -= random_num;
-                    if (stock.price < 5) {
-                        stock.price = 5;
+                    if (stock.price < 15) {
+                        stock.price = 15;
                     }
                 } else {
                     stock.price += random_num;
-                    if (stock.price > 100) {
-                        stock.price = 100;
+                    if (stock.price > 40) {
+                        stock.price = 50;
                     }
                 }
             }
@@ -128,6 +144,7 @@ const store = new Vuex.Store({
             state.refresh_key += 1;
         },
         componentRefresh(state) {
+            console.log("refresh");
             state.refresh_key += 1;
         }
 

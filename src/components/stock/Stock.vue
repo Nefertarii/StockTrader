@@ -135,15 +135,15 @@ export default {
             if (this.choose_num <= this.quantity_local) {
                 var sell_val = this.choose_num * this.now_unit_price;
                 this.quantity_local -= this.choose_num;
+                console.log(this.quantity_local);
                 if (this.quantity_local == 0) {
                     this.buy_avg_price_local = 0;
+                    this.uploadBuyAvgPrice(this.stock_code, this.buy_avg_price_local);
+                    this.uploadHoldingRemove(this.stock_code);
                 }
                 this.choose_num = null;
                 this.uploadFunds(sell_val);
-                this.uploadBuyAvgPrice(this.stock_code, this.buy_avg_price_local);
                 this.uploadQuantity(this.stock_code, this.quantity_local);
-                this.uploadHoldingRemove(this.stock_code);
-
             }
         },
         totalPriceAnimation() {
@@ -263,7 +263,7 @@ export default {
 
 .stock-name-text {
     margin-left: $btn_padding_size2;
-    font-size: $font_size3;
+    font-size: $font_size2;
     font-weight: 800;
 }
 
@@ -313,6 +313,7 @@ input {
 
 .stock-num-choose-danger {
     border: 1px solid $danger_color;
+
     &:focus {
         border: 1px solid $danger_color;
         box-shadow: 0 0 3px $danger_color;

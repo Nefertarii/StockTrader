@@ -16,15 +16,6 @@ import Routershow from './components/mainpage/Routershow.vue';
 import Asset from './components/modules/Asset.vue';
 
 export default {
-    data() {
-        return {
-            progress: 0,
-            funds: 0,
-            target: 10,
-        }
-    },
-    methods: {
-    },
     components: {
         HomePage,
         StockTrade,
@@ -34,9 +25,6 @@ export default {
         TargetBar,
         Routershow,
 
-    },
-    mounted() {
-        
     }
 }
 </script>
